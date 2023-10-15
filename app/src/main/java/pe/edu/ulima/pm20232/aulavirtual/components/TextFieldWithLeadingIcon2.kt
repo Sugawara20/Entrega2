@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Icon
@@ -24,7 +25,7 @@ import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Orange800
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.White400
 
 @Composable
-fun TextFieldWithLeadingIcon(
+fun TextFieldWithLeadingIcon2(
     leadingIcon: ImageVector? = null,
     isPassword: Boolean? = false,
     placeholder: String,
@@ -40,6 +41,7 @@ fun TextFieldWithLeadingIcon(
                 //.border(1.dp, borderColor)
                 .padding(5.dp)
                 .background(color = Color.Transparent)
+                .height(50.dp)
             ,
             value = text,
             onValueChange = {
@@ -52,7 +54,7 @@ fun TextFieldWithLeadingIcon(
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = if (isSystemInDarkTheme())Color(0xFF666666) else White400,
                 focusedIndicatorColor = Color.LightGray,
-                unfocusedIndicatorColor = Orange800
+                unfocusedIndicatorColor = Color.Transparent
             ),
             visualTransformation = if (isPassword == false) VisualTransformation.None else PasswordVisualTransformation(),
             leadingIcon = {

@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val blackList: List<String> = listOf("profile", "login")
+                    val blackList: List<String> = listOf("profile", "profile2", "login","reset_password")
                     val currentRoute = navBackStackEntry?.destination?.route
                     var showDialog by remember { mutableStateOf(false) }
                     Scaffold(
@@ -87,12 +87,12 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
-                                        route = "login",
+                                        route = "home",
                                         title = "Home",
                                         icon = Icons.Default.Home
                                     ),
                                     BottomBarScreen(
-                                        route = "profile",
+                                        route = "profile2",
                                         title = "Profile",
                                         icon = Icons.Default.Person
                                     ),
@@ -184,6 +184,10 @@ class MainActivity : ComponentActivity() {
                                 composable(route = "profile") {
                                     Log.d("ROUTER", "profile")
                                     ProfileScreen(navController, profileScrennViewModel)
+                                }
+                                composable(route = "profile2") {
+                                    Log.d("ROUTER2", "profile2")
+                                    ProfileScreen2(navController)
                                 }
                                 composable(route = "pokemon/edit?pokemon_id={pokemon_id}", arguments = listOf(
                                     navArgument("pokemon_id") {

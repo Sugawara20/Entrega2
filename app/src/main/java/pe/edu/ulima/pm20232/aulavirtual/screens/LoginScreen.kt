@@ -124,7 +124,7 @@ fun LoginForm(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
                     Text1(text ="INGRESA  ESTA  INFORMACION", fontWeight = FontWeight.Light, fontSize = 14.sp,
-                        color = if(isSystemInDarkTheme())Color.Black else White400)
+                        color = if(isSystemInDarkTheme())Color.White else Color.Black)
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Person, // Replace with your desired icon
                         placeholder = "Usuario",
