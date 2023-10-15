@@ -87,7 +87,7 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
-                                        route = "home",
+                                        route = "login",
                                         title = "Home",
                                         icon = Icons.Default.Home
                                     ),

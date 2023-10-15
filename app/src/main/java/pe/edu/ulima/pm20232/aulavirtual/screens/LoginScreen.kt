@@ -44,7 +44,7 @@ fun TopScreen(){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Orange400)
+                .background(if (isSystemInDarkTheme()) Color.Black else Gray1200)
                 .weight(3f)
                 .padding(8.dp),
             contentAlignment = Alignment.TopCenter
@@ -62,24 +62,25 @@ fun TopScreen(){
                     painter = painterResource(id = R.drawable.ic_ulima), // Replace with your SVG resource ID
                     contentDescription = "Universidad de Lima",
                     modifier = Modifier.size(120.dp),
-                    colorFilter = ColorFilter.tint(White400),
+                    colorFilter = ColorFilter.tint(if (isSystemInDarkTheme()) White400 else Orange400),
                 )
                 Text1(
-                    text = "Gimnasio UL",
+                    text = "Gimnasio ULima",
                     textAlign = TextAlign.Center,
-                    color = Color.White,
-                    //fontSize = 40.sp,
+                    color = if (isSystemInDarkTheme()) White400 else Color.Black ,
+                    //fontSize = 20.sp,
                     modifier =  Modifier.padding(top = 20.dp, bottom = 20.dp),
-                        style = MaterialTheme.typography.h4.copy(
-                        fontSize = 40.sp,
+                    style = MaterialTheme.typography.h4.copy(
+                        fontSize = 20.sp,
                         fontFamily = FontFamily(Font(R.font.caslon_classico_sc_regular)),
-                        color = if (isSystemInDarkTheme()) White400 else Orange400 // Apply the custom text color here
+                        color = if (isSystemInDarkTheme()) White400 else Color.Black // Apply the custom text color here
                     )
                 )
             }
         }
     }
 }
+
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -96,21 +97,21 @@ fun LoginForm(
     Box( // caja gris (light)
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = (screenHeightDp * 0.30).dp,)
-            .background(Gray1200),
+            .padding(top = (screenHeightDp * 0.35).dp,)
+            .background(if (isSystemInDarkTheme()) Color(0xFF666666) else White400),
     ) {
         Box(modifier = Modifier.padding(
             start = (screenWidthDp * 0.125).dp,
-            top = (40.dp)
+            top = (0.dp)
         ),){
             Box(
                 modifier = Modifier
                     .size(
                         (screenWidthDp * 0.75).dp,
-                        (screenHeightDp * 0.45).dp
+                        (screenHeightDp * 0.50).dp
                     ) // Adjust the size as needed
                     //.border(1.dp, Gray800)
-                    .background(White400)
+                    .background(if (isSystemInDarkTheme()) Color(0xFF999999) else White400)
                     .shadow(
                         elevation = 5.dp,
                         shape = MaterialTheme.shapes.medium,
@@ -122,7 +123,8 @@ fun LoginForm(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ){
-                    Text1(text ="Bienvenido al Sistema", fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                    Text1(text ="INGRESA  ESTA  INFORMACION", fontWeight = FontWeight.Light, fontSize = 14.sp,
+                        color = if(isSystemInDarkTheme())Color.Black else White400)
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Person, // Replace with your desired icon
                         placeholder = "Usuario",
