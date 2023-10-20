@@ -164,7 +164,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            NavHost(navController, startDestination = "create") {
+                            NavHost(navController, startDestination = "home") {
                                 composable(route = "splash") {
                                     SplashScreen {
                                         navController.navigate("login")
