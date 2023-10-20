@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val navController = rememberNavController()
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val blackList: List<String> = listOf("profile", "profile2", "login","reset_password")
+                    val blackList: List<String> = listOf("profile", "profile2", "login","reset_password", "create")
                     val currentRoute = navBackStackEntry?.destination?.route
                     var showDialog by remember { mutableStateOf(false) }
                     Scaffold(
@@ -86,9 +86,11 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
+
                                         route = "home",
                                         title = "Mi Rutina",
                                         icon = ImageVector.vectorResource(id = R.drawable.ic_checklist)
+                           
                                     ),
                                     BottomBarScreen(
                                         route = "profile2",
@@ -162,7 +164,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            NavHost(navController, startDestination = "pokemon") {
+                            NavHost(navController, startDestination = "create") {
                                 composable(route = "splash") {
                                     SplashScreen {
                                         navController.navigate("login")
@@ -187,6 +189,10 @@ class MainActivity : ComponentActivity() {
                                 composable(route = "profile2") {
                                     Log.d("ROUTER2", "profile2")
                                     ProfileScreen2(navController)
+                                }
+                                composable(route = "create") {
+                                    Log.d("ROUTER2", "profile2")
+                                    CreateAcountScreen(navController)
                                 }
                                 composable(route = "pokemon/edit?pokemon_id={pokemon_id}", arguments = listOf(
                                     navArgument("pokemon_id") {
