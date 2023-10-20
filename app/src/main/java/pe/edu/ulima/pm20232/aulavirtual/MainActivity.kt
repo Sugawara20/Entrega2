@@ -11,20 +11,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -95,12 +88,12 @@ class MainActivity : ComponentActivity() {
                                     BottomBarScreen(
                                         route = "home",
                                         title = "Mi Rutina",
-                                        icon = ImageVector.vectorResource(id = R.drawable.ic_check_list)
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_checklist)
                                     ),
                                     BottomBarScreen(
                                         route = "profile2",
                                         title = "Ejercicios",
-                                        icon = ImageVector.vectorResource(id = R.drawable.ic_square_list)
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_squarelist)
                                     ),
                                     BottomBarScreen(
                                         route = "share",
