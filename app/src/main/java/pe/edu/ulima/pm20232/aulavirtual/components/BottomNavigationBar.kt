@@ -177,38 +177,40 @@ fun shareOnFacebook(context: Context, text: String) {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_TEXT, text)
+
     intent.setPackage("com.facebook.katana") // Package name de Facebook
 
-    if (isAppInstalled(context, "com.facebook.katana")) {
+ //   if (isAppInstalled(context, "com.facebook.katana")) {
         try {
             startActivity(context, intent, null)
         } catch (e: Exception) {
             // Manejar errores, como si la aplicación de Facebook no está instalada
-            Toast.makeText(context, "La aplicación de Facebook no está instalada", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Excepción: ${e.javaClass.simpleName}", Toast.LENGTH_SHORT).show()
         }
-    } else {
+  //  } else {
         // Si la aplicación de Facebook no está instalada, muestra un mensaje de error
-        Toast.makeText(context, "La aplicación de Facebook no está instalada", Toast.LENGTH_SHORT).show()
-    }
+    //    Toast.makeText(context, "La aplicación de Facebook no está instalada", Toast.LENGTH_SHORT).show()
+   // }
 }
 
 fun shareOnWhatsApp(context: Context, text: String) {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_TEXT, text)
+    intent.putExtra(Intent.EXTRA_TITLE, text)
     intent.setPackage("com.whatsapp") // Package name de WhatsApp
 
-    if (isAppInstalled(context, "com.whatsapp")) {
+   // if (isAppInstalled(context, "com.whatsapp")) {
         try {
             startActivity(context, intent, null)
         } catch (e: Exception) {
             // Manejar errores, como si la aplicación de WhatsApp no está instalada
             Toast.makeText(context, "La aplicación de WhatsApp no está instalada", Toast.LENGTH_SHORT).show()
         }
-    } else {
+   // } else {
         // Si la aplicación de WhatsApp no está instalada, muestra un mensaje de error
-        Toast.makeText(context, "La aplicación de WhatsApp no está instalada", Toast.LENGTH_SHORT).show()
-    }
+     //   Toast.makeText(context, "La aplicación de WhatsApp no está instalada", Toast.LENGTH_SHORT).show()
+    //}
 }
 
 fun isAppInstalled(context: Context, packageName: String): Boolean {
