@@ -21,6 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -37,6 +41,8 @@ import pe.edu.ulima.pm20232.aulavirtual.configs.TopBarScreen
 import pe.edu.ulima.pm20232.aulavirtual.screenmodels.*
 import pe.edu.ulima.pm20232.aulavirtual.screens.*
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.AulaVirtualTheme
+import androidx.compose.ui.res.vectorResource
+
 
 class MainActivity : ComponentActivity() {
     private val loginScrennViewModel by viewModels<LoginScreenViewModel>()
@@ -88,18 +94,18 @@ class MainActivity : ComponentActivity() {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
                                         route = "home",
-                                        title = "Home",
-                                        icon = Icons.Default.Home
+                                        title = "Mi Rutina",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_check_list)
                                     ),
                                     BottomBarScreen(
                                         route = "profile2",
-                                        title = "Profile",
-                                        icon = Icons.Default.Person
+                                        title = "Ejercicios",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_square_list)
                                     ),
                                     BottomBarScreen(
-                                        route = "settings",
-                                        title = "Settings",
-                                        icon = Icons.Default.Settings
+                                        route = "share",
+                                        title = "Compartir",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_share)
                                     ),
                                 )
                                 BottomNavigationBar(navController = navController, screens)
