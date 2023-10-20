@@ -37,7 +37,6 @@ import pe.edu.ulima.pm20232.aulavirtual.screenmodels.LoginScreenViewModel
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.*
 import java.net.URL
 import androidx.compose.material.Text as Text1
-
 @Composable
 fun TopScreen(){
     Column(modifier =Modifier.fillMaxSize()) {

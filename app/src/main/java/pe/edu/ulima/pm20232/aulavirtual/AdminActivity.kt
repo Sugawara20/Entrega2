@@ -39,12 +39,12 @@ class AdminActivity : ComponentActivity() {
             }
             val context = LocalContext.current
             val currentActivity = (context as? ComponentActivity)
-            BackHandler {
-                Log.d("ADMIN ACTIVITY", "BackHandler")
-                currentActivity?.let {
-                    it.finishAffinity() // Finish the current activity and all associated activities
-                }
-            }
+            //BackHandler {
+              //  Log.d("ADMIN ACTIVITY", "BackHandler")
+              //  currentActivity?.let {
+               //     it.finishAffinity() // Finish the current activity and all associated activities
+              //  }
+          //  }
         }
     }
 }
