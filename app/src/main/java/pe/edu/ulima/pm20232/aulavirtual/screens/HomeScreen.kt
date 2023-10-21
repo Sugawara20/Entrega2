@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm20232.aulavirtual.screens
 
+import android.service.autofill.OnClickAction
 import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -57,7 +58,8 @@ fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
                         .clickable {
                             //Log.d("POKEMONS", model.pokemons[i].id.toString())
                             intValue = exercises[i].id.toInt()
-                            navController.navigate("pokemon/edit?pokemon_id=${intValue}")
+
+                           // navController.navigate("pokemon/edit?pokemon_id=${intValue}")
                         },
                 )
                 Text(exercises[i].name)
@@ -143,9 +145,11 @@ fun HomeScreen(navController: NavController, model: HomeScreenViewModel){
     println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     model.listAll()
+
     model.getGenerations()
     model.getUserBodyParts(""+savedUsername)
     model.listUserExercises(""+savedUsername)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
