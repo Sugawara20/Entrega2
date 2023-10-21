@@ -39,8 +39,6 @@ import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Gray1200
 @Composable
 fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
 
-
-
     var intValue by remember { mutableStateOf(0) }
     //val pokemons by model.pokemons.collectAsState()
     val exercises by model.exercises.collectAsState()
@@ -130,10 +128,24 @@ fun SelectOpitions(model: HomeScreenViewModel) {
 
 @Composable
 fun HomeScreen(navController: NavController, model: HomeScreenViewModel){
+    val sessionManager = SessionManager(LocalContext.current)
+    val savedUsername = sessionManager.getSavedUsername()
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+    println(savedUsername)
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     model.listAll()
     model.getGenerations()
-    model.getBodyParts()
-    model.listAllExercises()
+    model.getUserBodyParts(""+savedUsername)
+    model.listUserExercises(""+savedUsername)
     Column(
         modifier = Modifier
             .fillMaxWidth()
