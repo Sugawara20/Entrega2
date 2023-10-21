@@ -155,7 +155,25 @@ fun LoginForm(
                             viewModel.access(navController, context)
                         })
                     }
-                    CheckboxWithLabel(
+                    Row(modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 25.dp),
+                        horizontalArrangement = Arrangement.Center,
+                    ) {
+                        Text1(text = "No tienes una cuenta? ", textAlign = TextAlign.End, color = Gray800, fontSize = 14.sp)
+                        Text1(
+                            text = "Creala Aquí",
+                            textAlign = TextAlign.End,
+                            color = Orange400,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.clickable {
+                                println("Cambiar Contraseña")
+                                navController.navigate("create")
+                            },
+                        )
+                    }
+                   /* CheckboxWithLabel(
                         label = "Términos y Condiciones",
                         isChecked = viewModel.termsAndConditionsChecked,
                         onCheckedChange = {
@@ -176,7 +194,7 @@ fun LoginForm(
                             }
                         },
                         disabled = termsDisabled,
-                    )
+                    )*/
                 }
             }
         }

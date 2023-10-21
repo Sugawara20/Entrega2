@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm20232.aulavirtual.screens
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -33,6 +34,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -43,6 +45,7 @@ import androidx.navigation.NavHostController
 import pe.edu.ulima.pm20232.aulavirtual.R
 import pe.edu.ulima.pm20232.aulavirtual.components.ButtonWithIcon
 import pe.edu.ulima.pm20232.aulavirtual.components.TextFieldWithLeadingIcon
+import pe.edu.ulima.pm20232.aulavirtual.screenmodels.CreateAcountModel
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Gray1200
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Orange400
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.White400
@@ -110,6 +113,9 @@ fun IconoScreen2(navController: NavHostController){
 fun ResetForm2(
     screenWidthDp: Int,
     screenHeightDp: Int,
+    model: CreateAcountModel,
+    navController: NavHostController,
+    context: Context
 ) {
     var termsDisabled = true
     var temp =""
@@ -154,60 +160,62 @@ fun ResetForm2(
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Person, // Replace with your desired icon
                         placeholder = "Nombres",
-                        text = temp,
+                        text = model.names,
                         onTextChanged = {
-                            temp = it
+                            model.names = it
                         },
 
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Person, // Replace with your desired icon
                         placeholder = "Apellidos",
-                        text = temp,
+                        text = model.lastnames,
                         onTextChanged = {
-                            temp = it
+                            model.lastnames = it
                         }
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.AccountBox, // Replace with your desired icon
                         placeholder = "DNI",
-                        text = temp,
+                        text = model.dni,
                         onTextChanged = {
-                            temp = it
+                            model.dni = it
                         }
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Email, // Replace with your desired icon
-                        text = temp,
+                        text = model.email,
                         placeholder = "Correo",
                         onTextChanged = {
-                            temp = it
-                        },
-                        isPassword = true,
+                            model.email = it
+                        }
+
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.Phone, // Replace with your desired icon
                         placeholder = "Telefono",
-                        text = temp,
+                        text = model.phone,
                         onTextChanged = {
-                            temp = it
+                            model.phone = it
                         }
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.ArrowDropDown, // Replace with your desired icon
                         placeholder = "Contraseña",
-                        text = temp,
+                        text = model.password,
                         onTextChanged = {
-                            temp = it
-                        }
+                            model.password = it
+                        },
+                                isPassword = true,
                     )
                     TextFieldWithLeadingIcon(
                         leadingIcon = Icons.Default.KeyboardArrowRight, // Replace with your desired icon
                         placeholder = "Repetir Contraseña",
-                        text = temp,
+                        text = model.password2,
                         onTextChanged = {
-                            temp = it
-                        }
+                            model.password2 = it
+                        },
+                        isPassword = true,
                     )
                     Row(
                         modifier = Modifier
@@ -216,6 +224,8 @@ fun ResetForm2(
                         horizontalArrangement = Arrangement.Center,
                     ) {
                         ButtonWithIcon("CREAR CUENTA", Icons.Default.Send, {
+                            model.access(navController, context)
+
                         } )
                     }
                 }
@@ -225,19 +235,22 @@ fun ResetForm2(
         fun BottomSheet(screenWidthDp: Int, screenHeightDp: Int) {
             ResetForm2(
                 screenWidthDp,
-                screenHeightDp
+                screenHeightDp,
+                model,
+                navController,
+                context
             )
         }
     }
 }
 
 @Composable
-fun CreateAcountScreen(navController: NavHostController) {
+fun CreateAcountScreen(model: CreateAcountModel, navController: NavHostController) {
     val configuration = LocalConfiguration.current
     val screenWidthDp = configuration.screenWidthDp
     val screenHeightDp = configuration.screenHeightDp
     IconoScreen2(navController)
-    ResetForm2(screenWidthDp, screenHeightDp)
+    ResetForm2(screenWidthDp, screenHeightDp, model, navController, LocalContext.current)
 }
 
 

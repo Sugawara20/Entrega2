@@ -42,6 +42,8 @@ import androidx.compose.ui.res.vectorResource
 
 class MainActivity : ComponentActivity() {
     private val loginScrennViewModel by viewModels<LoginScreenViewModel>()
+    private val CreateAcountModel by viewModels<CreateAcountModel>()
+
     private val profileScrennViewModel by viewModels<ProfileScreenViewModel>()
     private val homeScrennViewModel by viewModels<HomeScreenViewModel>()
     private val pokemonDetailScrennViewModel by viewModels<PokemonDetailScreenViewModel>()
@@ -194,7 +196,7 @@ class MainActivity : ComponentActivity() {
                                 }
                                 composable(route = "create") {
                                     Log.d("ROUTER2", "profile2")
-                                    CreateAcountScreen(navController)
+                                    CreateAcountScreen( CreateAcountModel, navController)
                                 }
                                 composable(route = "pokemon/edit?pokemon_id={pokemon_id}", arguments = listOf(
                                     navArgument("pokemon_id") {
