@@ -13,7 +13,7 @@ import pe.edu.ulima.pm20232.aulavirtual.services.BodyPartService
 import pe.edu.ulima.pm20232.aulavirtual.services.ExerciseService
 import pe.edu.ulima.pm20232.aulavirtual.services.PokemonService
 
-class ExercisesScreenModel: ViewModel(){
+class ExercisesScreenViewModel: ViewModel(){
     //var pokemons = mutableStateListOf<Pokemon>()
     val generationsMap = mutableMapOf<Int, String>()
 
