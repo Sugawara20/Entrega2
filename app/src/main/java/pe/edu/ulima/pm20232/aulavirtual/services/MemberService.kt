@@ -38,6 +38,16 @@ class MemberService {
         memberList.add(Member(id = 28, code = 20183460, names = "ZAPATA ALBUJAR", lastNames = "PAOLO GIULIANO", email = "20183460@aloe.ulima.edu.pe", phone="999-888-777", imageUrl = "{baseUrl}profile-default.png", levelId = 1, dni = "12345705"))
     }
 
+    fun checkUser(dni: String, email: String): Int{
+        var resp: Int = 0
+        memberList.forEach{member ->
+            if(member.dni != dni && member.email != email){
+                resp = member.id
+            }
+        }
+        return resp
+
+
     fun getMember (code : Int) : ArrayList<Member> {
         var lista = ArrayList<Member>()
         for (member in memberList){
@@ -46,5 +56,6 @@ class MemberService {
             }
         }
         return lista
+
     }
 }
