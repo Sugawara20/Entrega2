@@ -115,9 +115,9 @@ fun ShowMembers(testDialog : @Composable () -> Unit)  {
                     text = "Integrantes del Grupo\n " +
                             "20202370 - Diego Arroyo\n" +
                             "20152154 - Brayan Oropeza\n"+
-                            "???????? - Jesus Espinoza\n" +
-                            "???????? - Adrian Alcala\n" +
-                            "???????? - Axel ????\n",
+                            "20018950 - Jesus Espinoza\n" +
+                            "20105566 - Adrian Alcala\n" +
+                            "20261514 - Axel Coder\n",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center,
