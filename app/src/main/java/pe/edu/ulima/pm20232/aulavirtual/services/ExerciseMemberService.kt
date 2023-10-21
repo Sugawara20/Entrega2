@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm20232.aulavirtual.services
 
+import pe.edu.ulima.pm20232.aulavirtual.models.Exercise
 import pe.edu.ulima.pm20232.aulavirtual.models.ExerciseMember
 
 class ExerciseMemberService {
@@ -408,5 +409,14 @@ class ExerciseMemberService {
         exerciseMemberList.add(ExerciseMember(id = 400, reps = 14, sets = 4, exerciseId = 20, memberId = 28))
         exerciseMemberList.add(ExerciseMember(id = 401, reps = 11, sets = 5, exerciseId = 50, memberId = 28))
         exerciseMemberList.add(ExerciseMember(id = 402, reps = 16, sets = 3, exerciseId = 45, memberId = 28))
+    }
+    fun listUserExcerciseId(user_id: Int): List<Int>  {
+        var ListExcerseId = ArrayList<Int>()
+        for (ExerciseMember in exerciseMemberList) {
+            if(ExerciseMember.memberId == user_id){
+                ListExcerseId.add(ExerciseMember.exerciseId)
+            }
+        }
+        return ListExcerseId
     }
 }

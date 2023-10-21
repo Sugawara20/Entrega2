@@ -79,4 +79,25 @@ class ExerciseService {
         }
         return reducedList
     }
+
+    fun listUserExercise(listExerciseId: List<Int>) : List<Exercise> {
+        var userExerciseList = ArrayList<Exercise>()
+        for (id in listExerciseId) {
+            for (exercise in exerciseList) {
+            if(exercise.id == id){
+                userExerciseList.add(exercise)
+            }
+        }
+    }
+        return userExerciseList
+}
+    fun listBodyPartsIdByUser(listExerciseId: List<Int>) : List<Int> {
+        var userBodyPartsIdList = ArrayList<Int>()
+        for (ExcerciseId in listExerciseId){
+            for (excercise in exerciseList){
+            if (excercise.id == ExcerciseId )
+                userBodyPartsIdList.add(excercise.bodyPartId)
+        }
+    }
+    return userBodyPartsIdList}
 }
