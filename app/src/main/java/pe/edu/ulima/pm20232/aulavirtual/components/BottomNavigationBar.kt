@@ -120,46 +120,70 @@ fun RowScope.AddItem(
         )
     }
 }
+
+
 @Composable
-fun ShowShareDialog(testDialog : @Composable () -> Unit, context: Context)  {
-    // Crear un diálogo personalizado para compartir
-    Dialog(
-        onDismissRequest = { /* No hacer nada al cerrar */ }
-    ) {
-        Box(
-            modifier = Modifier
-                .size(width = 200.dp, height = 200.dp)
-                .clip(RoundedCornerShape(16.dp)),
-            contentAlignment = Alignment.Center
+fun ShowShareDialog(testDialog: @Composable () -> Unit, context: Context) {
+    var isDialogOpen by remember { mutableStateOf(true) }
+
+    if (isDialogOpen) {
+        // Crear un diálogo personalizado para compartir
+        Dialog(
+            onDismissRequest = {
+                isDialogOpen = false
+            }
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
+            Box(
                 modifier = Modifier
-                    .background(Color.White)
-                    .border(1.dp, Color.Black) // Agrega un borde negro
-                    .padding(8.dp)
+                    .size(width = 200.dp, height = 200.dp)
+                    .clip(RoundedCornerShape(16.dp)),
+                contentAlignment = Alignment.Center
             ) {
-                Text(
-                    text = "Gracias por compartir",
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center,
-                    color = Color.Black,
-                )
-                Spacer(modifier = Modifier.height(16.dp))
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = Modifier.fillMaxWidth()
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    modifier = Modifier
+                        .background(Color.White)
+                        .border(1.dp, Color.Black) // Agrega un borde negro
+                        .padding(8.dp)
                 ) {
-                    ULIMAIcon(iconRes = pe.edu.ulima.pm20232.aulavirtual.R.drawable.ic_whatsapp,
-                        onClick = { shareOnWhatsApp(context, "https://github.com/Sugawara20/Entrega2") })
-                    ULIMAIcon(iconRes = pe.edu.ulima.pm20232.aulavirtual.R.drawable.ic_facebook,
-                        onClick = { shareOnFacebook(context, "https://github.com/Sugawara20/Entrega2") })
+                    Text(
+                        text = "Gracias por compartir",
+                        fontSize = 24.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center,
+                        color = Color.Black,
+                    )
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        ULIMAIcon(
+                            iconRes = pe.edu.ulima.pm20232.aulavirtual.R.drawable.ic_whatsapp,
+                            onClick = { shareOnWhatsApp(context, "https://github.com/Sugawara20/Entrega2") })
+                        ULIMAIcon(
+                            iconRes = pe.edu.ulima.pm20232.aulavirtual.R.drawable.ic_facebook,
+                            onClick = { shareOnFacebook(context, "https://github.com/Sugawara20/Entrega2") })
+                    }
+
+                    // Agregar un botón de cierre
+                    Button(
+                        onClick = {
+                            isDialogOpen = false
+                        },
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Text(text = "Cerrar")
+                    }
                 }
             }
         }
+    } else {
+        // Botón para abrir el diálogo
+                isDialogOpen = false
     }
 }
+
 
 @Composable
 fun ULIMAIcon(iconRes: Int, onClick: () -> Unit) {

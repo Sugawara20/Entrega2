@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.modifier.modifierLocalConsumer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,7 +36,11 @@ import coil.transform.CircleCropTransformation
 import pe.edu.ulima.pm20232.aulavirtual.components.ButtonWithIcon
 import pe.edu.ulima.pm20232.aulavirtual.components.TextFieldWithLeadingIcon
 import pe.edu.ulima.pm20232.aulavirtual.components.TextFieldWithLeadingIcon2
+import pe.edu.ulima.pm20232.aulavirtual.services.MemberService
+import pe.edu.ulima.pm20232.aulavirtual.services.SessionManager
+import pe.edu.ulima.pm20232.aulavirtual.services.UserService
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Gray1200
+import java.lang.reflect.Member
 
 @Composable
 fun ImageView(url: String, height: Int, width: Int) {
@@ -80,6 +85,12 @@ fun CustomToolbar(navController: NavController) {
 fun ProfileScreen2(navController: NavController){
     val imageUrl = "https://s.hs-data.com/bilder/spieler/gross/17450.jpg?fallback=png" // Replace with your image URL
     var temp =""
+    val sessionManager = SessionManager(LocalContext.current)
+    val savedUsername = sessionManager.getSavedUsername()
+    val serviceMemberUser : MemberService = MemberService()
+    var memberx= ArrayList<Member> ()
+    val intCode = (savedUsername+"").toInt()
+    //memberx=serviceMemberUser.getMember(1)
     CustomToolbar(navController)
     Row(
         modifier = Modifier
@@ -90,7 +101,7 @@ fun ProfileScreen2(navController: NavController){
     ){
         ImageView(url = imageUrl, width = 100, height = 100)
         Column() {
-            Text("Carlos Tevez", modifier = Modifier.padding(start = 30.dp, top = 20.dp)
+            Text(""+savedUsername, modifier = Modifier.padding(start = 30.dp, top = 20.dp)
                 ,fontSize = 20.sp , fontWeight = FontWeight.Bold)
             TextFieldWithLeadingIcon2(
                 leadingIcon = Icons.Default.AccountBox, // Replace with your desired icon

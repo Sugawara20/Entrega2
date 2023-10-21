@@ -37,6 +37,7 @@ class MemberService {
         memberList.add(Member(id = 27, code = 20172768, names = "VELARDE HUAMAN", lastNames = "HECTOR EUSEBIO", email = "20172768@aloe.ulima.edu.pe", phone="999-888-777", imageUrl = "{baseUrl}profile-default.png", levelId = 1, dni = "12345704"))
         memberList.add(Member(id = 28, code = 20183460, names = "ZAPATA ALBUJAR", lastNames = "PAOLO GIULIANO", email = "20183460@aloe.ulima.edu.pe", phone="999-888-777", imageUrl = "{baseUrl}profile-default.png", levelId = 1, dni = "12345705"))
     }
+
     fun checkUser(dni: String, email: String): Int{
         var resp: Int = 0
         memberList.forEach{member ->
@@ -45,5 +46,16 @@ class MemberService {
             }
         }
         return resp
+
+
+    fun getMember (code : Int) : ArrayList<Member> {
+        var lista = ArrayList<Member>()
+        for (member in memberList){
+            if (member.code == code) {
+                lista.add(member)
+            }
+        }
+        return lista
+
     }
 }

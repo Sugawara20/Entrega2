@@ -100,4 +100,48 @@ class ExerciseService {
         }
     }
     return userBodyPartsIdList}
+
+    fun exerciseListByBodyPartIdByUser(bodyPartId: Int, ListUserExercise: List<Exercise> ): List<Exercise>  {
+        var reducedList = ArrayList<Exercise>()
+        for (exercise in ListUserExercise) {
+            if(exercise.bodyPartId == bodyPartId){
+                reducedList.add(exercise)
+            }
+        }
+        return reducedList
+    }
+
+    fun getURL(id: Int) : String {
+        var url=""
+            for (exercise in exerciseList) {
+                if(exercise.id == id){
+                    url=exercise.videoUrl
+                }
+            }
+        return url
+    }
 }
+
+//import pe.edu.ulima.pm20232.aulavirtual.models.User
+//import pe.edu.ulima.pm20232.aulavirtual.services.ExerciseMemberService
+//import pe.edu.ulima.pm20232.aulavirtual.services.UserService
+//
+//fun mostrarCantidadDeEjerciciosEnHome(loggedUserName: String) {
+//    val userService = UserService()
+//    val exerciseMemberService = ExerciseMemberService()
+//
+//    val loggedUser: User? = userService.userList.find { it.user == loggedUserName }
+//
+//    if (loggedUser != null) {
+//        val exercisesForLoggedUser = exerciseMemberService.exerciseMemberList.filter { it.memberId == loggedUser.id }
+//
+//        val cantidadDeEjercicios = exercisesForLoggedUser.size
+//
+//        println("Bienvenido, ${loggedUser.user}! Has realizado $cantidadDeEjercicios ejercicios.")
+//    } else {
+//        println("Usuario no encontrado. Asegúrate de que estás logueado correctamente.")
+//    }
+//}
+//
+//val loggedUserName = "20180038"
+//mostrarCantidadDeEjerciciosEnHome(loggedUserName)

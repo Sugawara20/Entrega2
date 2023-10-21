@@ -47,6 +47,7 @@ class MainActivity : ComponentActivity() {
     private val profileScrennViewModel by viewModels<ProfileScreenViewModel>()
     private val homeScrennViewModel by viewModels<HomeScreenViewModel>()
     private val pokemonDetailScrennViewModel by viewModels<PokemonDetailScreenViewModel>()
+    private val ExercisesScreenModel by viewModels<ExercisesScreenViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +96,7 @@ class MainActivity : ComponentActivity() {
                            
                                     ),
                                     BottomBarScreen(
-                                        route = "profile2",
+                                        route = "exercises",
                                         title = "Ejercicios",
                                         icon = ImageVector.vectorResource(id = R.drawable.ic_squarelist)
                                     ),
@@ -173,6 +174,10 @@ class MainActivity : ComponentActivity() {
                                     SplashScreen {
                                         navController.navigate("login")
                                     }
+                                }
+                                composable(route = "exercises") {
+                                    Log.d("EXERCISES", "exercises")
+                                    ExercisesScreen(navController, ExercisesScreenModel)
                                 }
                                 composable(route = "home") {
                                     Log.d("HOME", "home screen")
