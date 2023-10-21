@@ -110,6 +110,16 @@ class ExerciseService {
         }
         return reducedList
     }
+
+    fun getURL(id: Int) : String {
+        var url=""
+            for (exercise in exerciseList) {
+                if(exercise.id == id){
+                    url=exercise.videoUrl
+                }
+            }
+        return url
+    }
 }
 
 //import pe.edu.ulima.pm20232.aulavirtual.models.User
