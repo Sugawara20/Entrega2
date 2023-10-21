@@ -63,16 +63,12 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<TopBarScreen> = listOf(
                                     TopBarScreen(
-                                        route = "home",
-                                        title = "Home",
+                                        route = "profile2",
+                                        title = "Editar Perfil",
                                     ),
                                     TopBarScreen(
-                                        route = "profile",
-                                        title = "Ver Perfíl",
-                                    ),
-                                    TopBarScreen(
-                                        route = "pokemon",
-                                        title = "Ver Pokemones",
+                                        route = "about",
+                                        title = "Acerca de",
                                     ),
                                     TopBarScreen(
                                         route = "sign_out",
@@ -165,6 +161,7 @@ class MainActivity : ComponentActivity() {
                             }
 
                             NavHost(navController, startDestination = "home") {
+
                                 composable(route = "splash") {
                                     SplashScreen {
                                         navController.navigate("login")
