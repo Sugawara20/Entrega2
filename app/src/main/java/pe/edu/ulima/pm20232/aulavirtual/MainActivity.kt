@@ -1,5 +1,7 @@
 package pe.edu.ulima.pm20232.aulavirtual
 
+import android.content.SharedPreferences
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -47,6 +49,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+
             AulaVirtualTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -160,7 +163,8 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            NavHost(navController, startDestination = "home") {
+
+                            NavHost(navController, startDestination = "login") {
 
                                 composable(route = "splash") {
                                     SplashScreen {
