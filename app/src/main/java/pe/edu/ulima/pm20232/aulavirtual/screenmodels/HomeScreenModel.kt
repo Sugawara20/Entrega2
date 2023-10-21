@@ -91,6 +91,11 @@ class HomeScreenViewModel: ViewModel(){
         setExercises(listExercise)
     }
 
+    fun filterByBodyPartsByUser(bodyPartId: Int, exerciseList: List<Exercise>){
+        val service: ExerciseService = ExerciseService()
+        val list = service.exerciseListByBodyPartIdByUser(bodyPartId, exerciseList)
+    }
+
     fun filterByBodyParts(bodyPartId: Int){
         val service: ExerciseService = ExerciseService()
         val list = service.exerciseListByBodyPartId(bodyPartId)
