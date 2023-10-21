@@ -44,6 +44,7 @@ class MainActivity : ComponentActivity() {
     private val profileScrennViewModel by viewModels<ProfileScreenViewModel>()
     private val homeScrennViewModel by viewModels<HomeScreenViewModel>()
     private val pokemonDetailScrennViewModel by viewModels<PokemonDetailScreenViewModel>()
+    private val ExercisesScreenModel by viewModels<PokemonDetailScreenViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
