@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
+import kotlinx.coroutines.CoroutineScope
 import pe.edu.ulima.pm20232.aulavirtual.components.BottomNavigationBar
 import pe.edu.ulima.pm20232.aulavirtual.components.TopNavigationBar
 import pe.edu.ulima.pm20232.aulavirtual.configs.BottomBarScreen
@@ -163,7 +164,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            NavHost(navController, startDestination = "create") {
+                            NavHost(navController, startDestination = "home") {
                                 composable(route = "splash") {
                                     SplashScreen {
                                         navController.navigate("login")
