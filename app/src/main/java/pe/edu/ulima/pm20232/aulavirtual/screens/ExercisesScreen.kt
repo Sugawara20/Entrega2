@@ -32,10 +32,12 @@ import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import pe.edu.ulima.pm20232.aulavirtual.screenmodels.HomeScreenViewModel
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Gray1200
+import pe.edu.ulima.pm20232.aulavirtual.screenmodels.ExercisesScreenViewModel
+
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
+fun ExercisesGrid(navController: NavController, model: ExercisesScreenViewModel){
     var intValue by remember { mutableStateOf(0) }
     //val pokemons by model.pokemons.collectAsState()
     val exercises by model.exercises.collectAsState()
@@ -64,7 +66,7 @@ fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
 }
 
 @Composable
-fun SelectOpitions(model: HomeScreenViewModel) {
+fun SelectOpitions(model: ExercisesScreenViewModel) {
     var expanded by remember { mutableStateOf(false) }
     // val suggestions = listOf("Kotlin", "Java", "Dart", "Python")
     var selectedText by remember { mutableStateOf("") }
@@ -118,7 +120,7 @@ fun SelectOpitions(model: HomeScreenViewModel) {
 }
 
 @Composable
-fun HomeScreen(navController: NavController, model: HomeScreenViewModel){
+fun ExercisesScreen(navController: NavController, model: ExercisesScreenViewModel){
     model.listAll()
     model.getGenerations()
     model.getBodyParts()
