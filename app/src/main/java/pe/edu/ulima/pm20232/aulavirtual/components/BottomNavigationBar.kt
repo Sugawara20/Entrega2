@@ -41,7 +41,9 @@ import pe.edu.ulima.pm20232.aulavirtual.configs.BottomBarScreen
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.widget.Toast
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.remember
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
@@ -125,7 +127,9 @@ fun ShowShareDialog(testDialog : @Composable () -> Unit, context: Context)  {
         onDismissRequest = { /* No hacer nada al cerrar */ }
     ) {
         Box(
-            modifier = Modifier.fillMaxSize(),
+            modifier = Modifier
+                .size(width = 200.dp, height = 200.dp)
+                .clip(RoundedCornerShape(16.dp)),
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -178,21 +182,18 @@ fun shareOnFacebook(context: Context, text: String) {
     intent.type = "text/plain"
     intent.putExtra(Intent.EXTRA_TEXT, text)
 
+    intent.putExtra(Intent.EXTRA_TITLE, text)
     intent.setPackage("com.facebook.katana") // Package name de Facebook
-
  //   if (isAppInstalled(context, "com.facebook.katana")) {
         try {
             startActivity(context, intent, null)
         } catch (e: Exception) {
             // Manejar errores, como si la aplicación de Facebook no está instalada
-            Toast.makeText(context, "Excepción: ${e.javaClass.simpleName}", Toast.LENGTH_SHORT).show()
+          
+            Toast.makeText(context, "Excepción: ${e.javaClass.simpleName}" , Toast.LENGTH_SHORT).show()
+            println("Excepción: ${e.javaClass.simpleName}")
         }
-  //  } else {
-        // Si la aplicación de Facebook no está instalada, muestra un mensaje de error
-    //    Toast.makeText(context, "La aplicación de Facebook no está instalada", Toast.LENGTH_SHORT).show()
-   // }
-}
-
+    }
 fun shareOnWhatsApp(context: Context, text: String) {
     val intent = Intent(Intent.ACTION_SEND)
     intent.type = "text/plain"
@@ -200,27 +201,14 @@ fun shareOnWhatsApp(context: Context, text: String) {
     intent.putExtra(Intent.EXTRA_TITLE, text)
     intent.setPackage("com.whatsapp") // Package name de WhatsApp
 
-   // if (isAppInstalled(context, "com.whatsapp")) {
         try {
             startActivity(context, intent, null)
         } catch (e: Exception) {
             // Manejar errores, como si la aplicación de WhatsApp no está instalada
             Toast.makeText(context, "La aplicación de WhatsApp no está instalada", Toast.LENGTH_SHORT).show()
         }
-   // } else {
-        // Si la aplicación de WhatsApp no está instalada, muestra un mensaje de error
-     //   Toast.makeText(context, "La aplicación de WhatsApp no está instalada", Toast.LENGTH_SHORT).show()
-    //}
-}
-
-fun isAppInstalled(context: Context, packageName: String): Boolean {
-    val pm = context.packageManager
-    return try {
-        pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES)
-        true
-    } catch (e: PackageManager.NameNotFoundException) {
-        false
     }
-}
+
+
 
 
