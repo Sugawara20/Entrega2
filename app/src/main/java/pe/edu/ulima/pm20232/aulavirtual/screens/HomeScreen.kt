@@ -30,13 +30,16 @@ import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import pe.edu.ulima.pm20232.aulavirtual.screenmodels.HomeScreenViewModel
+import pe.edu.ulima.pm20232.aulavirtual.services.SessionManager
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.Gray1200
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
+
     var intValue by remember { mutableStateOf(0) }
     //val pokemons by model.pokemons.collectAsState()
     val exercises by model.exercises.collectAsState()
@@ -67,6 +70,11 @@ fun ExercisesGrid(navController: NavController, model: HomeScreenViewModel){
 
 @Composable
 fun SelectOpitions(model: HomeScreenViewModel) {
+
+    val sessionManager = SessionManager(LocalContext.current)
+    val savedUsername = sessionManager.getSavedUsername()
+    val savedPassword = sessionManager.getSavedPassword()
+
     var expanded by remember { mutableStateOf(false) }
     // val suggestions = listOf("Kotlin", "Java", "Dart", "Python")
     var selectedText by remember { mutableStateOf("") }
@@ -90,6 +98,7 @@ fun SelectOpitions(model: HomeScreenViewModel) {
                     textfieldSize = coordinates.size.toSize()
                 },
             label = {Text("Lista de Partes del Cuerpo")},
+            //label = {Text(""+savedUsername)},
             trailingIcon = {
                 Icon(icon,"contentDescription",
                     Modifier.clickable { expanded = !expanded })
@@ -121,10 +130,26 @@ fun SelectOpitions(model: HomeScreenViewModel) {
 
 @Composable
 fun HomeScreen(navController: NavController, model: HomeScreenViewModel){
+    val sessionManager = SessionManager(LocalContext.current)
+    val savedUsername = sessionManager.getSavedUsername()
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+
+    println(savedUsername)
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")
     model.listAll()
-    //model.getGenerations()
-    model.getBodyParts()
-    model.listAllExercises()
+
+    model.getGenerations()
+    model.getUserBodyParts(""+savedUsername)
+    model.listUserExercises(""+savedUsername)
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

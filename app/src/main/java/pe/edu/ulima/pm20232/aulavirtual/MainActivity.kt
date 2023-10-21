@@ -1,5 +1,7 @@
 package pe.edu.ulima.pm20232.aulavirtual
 
+import android.content.SharedPreferences
+import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,16 +13,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -38,6 +37,8 @@ import pe.edu.ulima.pm20232.aulavirtual.configs.TopBarScreen
 import pe.edu.ulima.pm20232.aulavirtual.screenmodels.*
 import pe.edu.ulima.pm20232.aulavirtual.screens.*
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.AulaVirtualTheme
+import androidx.compose.ui.res.vectorResource
+
 
 class MainActivity : ComponentActivity() {
     private val loginScrennViewModel by viewModels<LoginScreenViewModel>()
@@ -49,6 +50,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
+
             AulaVirtualTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
@@ -65,16 +67,12 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<TopBarScreen> = listOf(
                                     TopBarScreen(
-                                        route = "home",
-                                        title = "Home",
+                                        route = "profile2",
+                                        title = "Editar Perfil",
                                     ),
                                     TopBarScreen(
-                                        route = "profile",
-                                        title = "Ver Perfíl",
-                                    ),
-                                    TopBarScreen(
-                                        route = "pokemon",
-                                        title = "Ver Pokemones",
+                                        route = "about",
+                                        title = "Acerca de",
                                     ),
                                     TopBarScreen(
                                         route = "sign_out",
@@ -88,19 +86,21 @@ class MainActivity : ComponentActivity() {
                             if(blackList.contains(currentRoute) == false) {
                                 val screens: List<BottomBarScreen> = listOf(
                                     BottomBarScreen(
-                                        route = "Home",
-                                        title = "Home",
-                                        icon = Icons.Default.Home
+
+                                        route = "home",
+                                        title = "Mi Rutina",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_checklist)
+                           
                                     ),
                                     BottomBarScreen(
                                         route = "profile2",
-                                        title = "Profile",
-                                        icon = Icons.Default.Person
+                                        title = "Ejercicios",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_squarelist)
                                     ),
                                     BottomBarScreen(
-                                        route = "settings",
-                                        title = "Settings",
-                                        icon = Icons.Default.Settings
+                                        route = "share",
+                                        title = "Compartir",
+                                        icon = ImageVector.vectorResource(id = R.drawable.ic_share)
                                     ),
                                 )
                                 BottomNavigationBar(navController = navController, screens)
@@ -164,7 +164,9 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
 
-                            NavHost(navController, startDestination = "home") {
+
+                            NavHost(navController, startDestination = "login") {
+
                                 composable(route = "splash") {
                                     SplashScreen {
                                         navController.navigate("login")

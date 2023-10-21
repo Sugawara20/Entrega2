@@ -50,6 +50,15 @@ class UserService {
         }
         return resp
     }
+    fun getUserId(username: String): Int{
+        var resp: Int = 0
+        userList.forEach { user ->
+            if (user.user == username) {
+                resp = user.id
+            }
+
+        }
+        return resp}
 
     interface UserService2 {
         @FormUrlEncoded

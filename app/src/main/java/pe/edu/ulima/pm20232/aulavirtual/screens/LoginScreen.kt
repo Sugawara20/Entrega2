@@ -1,5 +1,6 @@
 package pe.edu.ulima.pm20232.aulavirtual.screens
 
+import android.content.Context
 import android.widget.ScrollView
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -16,6 +17,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -37,7 +39,6 @@ import pe.edu.ulima.pm20232.aulavirtual.screenmodels.LoginScreenViewModel
 import pe.edu.ulima.pm20232.aulavirtual.ui.theme.*
 import java.net.URL
 import androidx.compose.material.Text as Text1
-
 @Composable
 fun TopScreen(){
     Column(modifier =Modifier.fillMaxSize()) {
@@ -90,7 +91,8 @@ fun LoginForm(
     viewModel: LoginScreenViewModel,
     coroutineScope: CoroutineScope,
     bottomSheetScaffoldState: BottomSheetScaffoldState,
-    navController: NavHostController
+    navController: NavHostController,
+    context: Context
 ){
     var termsDisabled = true
 
@@ -150,7 +152,7 @@ fun LoginForm(
                         horizontalArrangement = Arrangement.Center,
                     ){
                         ButtonWithIcon("INGRESAR", Icons.Default.Person, {
-                            viewModel.access(navController)
+                            viewModel.access(navController, context)
                         })
                     }
                     CheckboxWithLabel(
@@ -252,7 +254,7 @@ fun BottomSheet(screenWidthDp: Int, screenHeightDp: Int, viewModel: LoginScreenV
         sheetPeekHeight = 0.dp,
         backgroundColor = Color.Transparent
     ) {
-        LoginForm(screenWidthDp, screenHeightDp, viewModel, coroutineScope, bottomSheetScaffoldState, navController)
+        LoginForm(screenWidthDp, screenHeightDp, viewModel, coroutineScope, bottomSheetScaffoldState, navController, LocalContext.current)
     }
 }
 
