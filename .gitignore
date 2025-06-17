@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /GestionlentesvrBack/GestionlentesvrWS/target/
 
 
@@ -46,3 +47,20 @@ secrets.json
 # ---- Sistema operativo (Windows / macOS) ----
 Thumbs.db
 .DS_Store
+=======
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+>>>>>>> 79051e58ec63280295973c55cb5c9bd9c4837c29
